@@ -27,10 +27,80 @@ STEP-5: The characters in the keyword are repeated sequentially so as to match w
 STEP-6: Pick the first letter of the plain text and that of the keyword as the row indices and column indices respectively.
 STEP-7: The junction character where these two meet forms the cipher character.
 STEP-8: Repeat the above steps to generate the entire cipher text.
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
+// Function to encrypt a message using Vigenere Cipher
+void encrypt(char text[], char key[], char result[]) {
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+    int i, j = 0;
+
+    for (i = 0; i < textLen; i++) {
+        if (isalpha(text[i])) {
+            char base = isupper(text[i]) ? 'A' : 'a';
+            result[i] = ( (text[i] - base) + (toupper(key[j % keyLen]) - 'A') ) % 26 + base;
+            j++;
+        } else {
+            result[i] = text[i]; // keep spaces/punctuation
+        }
+    }
+    result[i] = '\0';
+}
+
+// Function to decrypt a message using Vigenere Cipher
+void decrypt(char text[], char key[], char result[]) {
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+    int i, j = 0;
+
+    for (i = 0; i < textLen; i++) {
+        if (isalpha(text[i])) {
+            char base = isupper(text[i]) ? 'A' : 'a';
+            result[i] = ( ( (text[i] - base) - (toupper(key[j % keyLen]) - 'A') + 26 ) % 26 ) + base;
+            j++;
+        } else {
+            result[i] = text[i]; // keep spaces/punctuation
+        }
+    }
+    result[i] = '\0';
+}
+
+int main() {
+    char text[1000], key[100], enc[1000], dec[1000];
+
+    printf("Simulation of Vigenere Cipher\n");
+    printf("Enter the message: ");
+    scanf("%[^\n]", text);   // read full line including spaces
+    getchar();
+    printf("Enter the key: ");
+    scanf("%s", key);
+
+    for (int i = 0; i < strlen(key); i++) key[i] = toupper(key[i]);
+
+    encrypt(text, key, enc);
+    printf("Encrypted text : %s\n", enc);
+
+    decrypt(enc, key, dec);
+    printf("Decrypted text : %s\n", dec);
+
+    return 0;
+}
+~~~
 
 ## PROGRAM
+~~~
+
+
 
 ## OUTPUT
 
+<img width="1745" height="887" alt="Screenshot 2025-09-03 090056" src="https://github.com/user-attachments/assets/e11c34a0-4679-4be5-9cf5-0719f4eef963" />
+
+
 ## RESULT
+
+this program is executed successfully
+
+
