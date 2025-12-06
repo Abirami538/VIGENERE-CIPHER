@@ -27,6 +27,9 @@ STEP-5: The characters in the keyword are repeated sequentially so as to match w
 STEP-6: Pick the first letter of the plain text and that of the keyword as the row indices and column indices respectively.
 STEP-7: The junction character where these two meet forms the cipher character.
 STEP-8: Repeat the above steps to generate the entire cipher text.
+
+## PROGRAM
+~~~
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -88,10 +91,6 @@ int main() {
     return 0;
 }
 ~~~
-
-## PROGRAM
-~~~
-
 
 
 ## OUTPUT
